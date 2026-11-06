@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package customer.v1;
+
+option java_multiple_files = true;
+option java_package = "kh.edu.istad.common.grpc.customer.v1";
+option java_outer_classname = "CustomerProto";
+
+// Customer information
+message Customer {
+  string customer_id = 1;
+  string username = 2;
+  string family_name = 3;
+  string given_name = 4;
+  string email = 5;
+  string phone_number = 6;
+  string status = 7;
+  string segment_id = 8;
+}
+
+// Request to get one customer
+message GetCustomerRequest {
+  string customer_id = 1;
+}
+
+// Response containing one customer
+message GetCustomerResponse {
+  Customer customer = 1;
+}
+
+// Request to get all customers
+message GetCustomersRequest {
+}
+
+// Response containing multiple customers
+message GetCustomersResponse {
+  repeated Customer customers = 1;
+}
+
+// Customer gRPC service
+service CustomerService {
+
+  // Get customer by ID
+  rpc GetCustomer(GetCustomerRequest)
+      returns (GetCustomerResponse);
+
+  // Get all customers
+  rpc GetCustomers(GetCustomersRequest)
+      returns (GetCustomersResponse);
+}
