@@ -3,6 +3,7 @@ version: v2
 
 modules:
   - path: proto
+    name: buf.build/activity007/protobuf
 
 lint:
   use:
